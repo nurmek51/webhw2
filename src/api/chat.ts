@@ -1,7 +1,7 @@
 import { type Chat, type Message } from '../types/chat';
 import axios from 'axios'; // Import axios
 
-const API_BASE_URL = 'http://localhost:3001'; // Define backend API base URL
+const API_BASE_URL = 'https://webhw2-488n.vercel.app/'; // Define backend API base URL
 
 // Fetch all chats
 export const fetchChats = async (): Promise<Chat[]> => {
