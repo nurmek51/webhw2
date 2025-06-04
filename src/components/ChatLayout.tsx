@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import ChatList from './ChatList';
 import ChatWindow from './ChatWindow';
-import { type Chat, type Message } from '../types/chat';
+import { type Chat } from '../types/chat';
 import { fetchChats } from '../api/chat';
 
 const ChatLayout: React.FC = () => {

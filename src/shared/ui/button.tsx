@@ -6,7 +6,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
 
 export const Button: FC<ButtonProps> = (props) => {
   return (
-    <button {...props} onClick={() => props.customOnClick()}>
+    <button {...props} onClick={() => props.customOnClick?.()}>
       Custom Button
     </button>
   );
