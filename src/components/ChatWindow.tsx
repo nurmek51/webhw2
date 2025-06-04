@@ -7,6 +7,15 @@ import { fetchMessages, sendMessage } from '../api/chat';
 // Define your avatar URL here
 const MY_AVATAR_URL = 'https://www.czbiohub.org/wp-content/uploads/2024/03/sam-altman.png'; // Paste your avatar image URL
 
+// Define theme classes
+const themeClasses = {
+  chatHeader: "bg-white border-b border-gray-200 px-4 py-3 flex items-center",
+  messageOut: "bg-blue-500 text-white rounded-2xl rounded-br-md",
+  messageIn: "bg-white text-gray-900 rounded-2xl rounded-bl-md shadow-sm",
+  inputArea: "bg-white border-t border-gray-200 px-4 py-3",
+  onlineIndicator: "w-3 h-3 bg-green-500 rounded-full border-2 border-white"
+};
+
 interface ChatWindowProps {
   selectedChat: Chat;
 }
@@ -78,7 +87,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ selectedChat }) => {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="bg-white border-b border-gray-200 px-4 py-3 flex items-center">
+      <div className={themeClasses.chatHeader}>
         <img
           src={MY_AVATAR_URL}
           alt={`${selectedChat.name} Avatar`}
@@ -86,7 +95,9 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ selectedChat }) => {
         />
         <div className="flex-1">
           <div className="font-bold text-lg">{selectedChat.name}</div>
-          <div className="text-sm text-gray-500">Online</div>
+          <div className={`text-sm text-gray-500 flex items-center`}>
+             Online <span className={themeClasses.onlineIndicator}></span>
+          </div>
         </div>
       </div>
 
@@ -105,8 +116,8 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ selectedChat }) => {
             )}
             <div
               className={`max-w-xs px-4 py-2 rounded-lg ${message.sender === 'me'
-                ? 'bg-blue-500 text-white rounded-br-md'
-                : 'bg-white text-gray-900 rounded-bl-md shadow-sm'
+                ? themeClasses.messageOut
+                : themeClasses.messageIn
               }`}
             >
               <p>{message.text}</p>
@@ -124,7 +135,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({ selectedChat }) => {
         <div ref={messagesEndRef} />
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white border-t border-gray-200 px-4 py-3 flex items-center">
+      <form onSubmit={handleSubmit(onSubmit)} className={`${themeClasses.inputArea} flex items-center`}>
         <input
           type="text"
           placeholder="Type a message..."

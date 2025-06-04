@@ -25,7 +25,7 @@ const ChatLayout: React.FC = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar - Chat List */}
-      <div className="w-110 bg-white border-r border-gray-200 flex flex-col">
+      <div className="bg-white border-r border-gray-200 w-80 flex flex-col">
         {isLoadingChats && <div className="p-4">Loading chats...</div>}
         {chatsError && <div className="p-4 text-red-500">Error loading chats: {chatsError.message}</div>}
         {chats && <ChatList chats={chats} selectedChatId={selectedChatId} onSelectChat={handleSelectChat} />}
